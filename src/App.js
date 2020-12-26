@@ -14,7 +14,6 @@ class App extends Component {
     let data = "prostam";
     return (
       <div className="App">
-        <h1>Liste des contacts : </h1>
         <Navbar titre="Contact-list"/>
         <Navbar />
         <Contact/>

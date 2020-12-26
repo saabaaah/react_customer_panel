@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import './contact.css'
 
 class Contact extends Component {
     render() {
         const {nom, tel, email} = this.props;
         return (
-            <div>
-                <h1>contact : {nom}</h1>
-                <ul>
-                    <li>Tel :  {tel}</li>
-                    <li>Email :  {email}</li>
-
-                </ul>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{nom}</h4>
+                    <p class="card-text">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">{nom}</h4>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Tel :  {tel}</li>
+                                <li class="list-group-item">Email :  {email}</li>
+                            </ul>
+                        </div>
+                    </p>
+                </div>
             </div>
         )
     }
