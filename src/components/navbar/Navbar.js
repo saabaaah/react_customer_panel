@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 
 const Navbar = (props) => {
     const {titre} = props;
@@ -12,5 +14,10 @@ const Navbar = (props) => {
 // valeurs par défaut
 Navbar.defaultProps = {
     titre: " Une liste "
+};
+
+// les types des propriétés
+Navbar.propTypes = {
+    titre :PropTypes.string.isRequired
 };
 export default Navbar;

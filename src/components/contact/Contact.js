@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Contact extends Component {
     render() {
@@ -24,4 +25,10 @@ Contact.defaultProps = {
     emai:" Sans emai"
 };
 
+// les types des propriétés
+Contact.propTypes = {
+    nom: PropTypes.string.isRequired,
+    tel: PropTypes.string,
+    email: PropTypes.string
+};
 export default Contact;
