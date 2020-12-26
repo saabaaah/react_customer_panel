@@ -22,7 +22,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By Prostam :)
+            By {data} :)
           </a>
         </header>
       </div>
