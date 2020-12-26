@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Contacts from './components/contact/Contacts';
+import {Provider, Consumer} from './components/context';
+
+// importer css
 import 'font-awesome/css/font-awesome.min.css';
+import './App.css';
 
 class App extends Component {
 
@@ -13,11 +15,11 @@ class App extends Component {
     /// données 
     let data = "prostam";
     return (
-      <div className="App">
+      <Provider className="App">
         <Navbar titre="Contact-list"/>
         <Contacts/>
 
-      </div>
+      </Provider>
     );
   }
 }
