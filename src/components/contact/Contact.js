@@ -16,4 +16,12 @@ class Contact extends Component {
     }
 }
 
+
+// propriétés par défaut!
+Contact.defaultProps = {
+    nom:" Sans nom",
+    tel:" Sans tel",
+    emai:" Sans emai"
+};
+
 export default Contact;

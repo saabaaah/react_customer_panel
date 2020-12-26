@@ -9,4 +9,8 @@ const Navbar = (props) => {
     )
 }
 
+// valeurs par défaut
+Navbar.defaultProps = {
+    titre: " Une liste "
+};
 export default Navbar;

@@ -15,6 +15,8 @@ class App extends Component {
       <div className="App">
         <h1>Liste des contacts : </h1>
         <Navbar titre="Contact-list"/>
+        <Navbar />
+        <Contact/>
         <Contact nom="sabah HM" tel ="123456" email="saabaaah@email"/>
         <Contact nom="yassine KH" tel ="01234556" email="yacine.k@email"/>
         <Contact nom="mani HM" tel ="987654321" email="mani.hm@email"/>
