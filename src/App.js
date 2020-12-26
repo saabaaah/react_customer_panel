@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Contact from './components/contact/Contact';
 class App extends Component {
 
   // methode render :
@@ -11,20 +11,11 @@ class App extends Component {
     let data = "prostam";
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Saying <code>"Hello World"</code> differently!
-          </p>
-          <a
-            className="App-link"
-            href="https://prostam.fr"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By {data} :)
-          </a>
-        </header>
+        <h1>Liste des contacts : </h1>
+        <Contact/>
+        <Contact/>
+        <Contact/>
+        <Contact/>
       </div>
     );
   }
