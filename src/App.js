@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Contacts from './components/contact/Contacts';
-
+import 'font-awesome/css/font-awesome.min.css';
 
 class App extends Component {
 
