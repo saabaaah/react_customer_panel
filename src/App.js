@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Contact from './components/contact/Contact';
 import Navbar from './components/navbar/Navbar';
+import Contact from './components/contact/Contact';
+
 
 class App extends Component {
 
