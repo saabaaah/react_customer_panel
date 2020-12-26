@@ -4,24 +4,23 @@ import './contact.css'
 
 class Contact extends Component {
     render() {
-        const {nom, tel, email} = this.props;
+        const {nom, tel, email} = this.props.data;
         return (
+
+        <div class="card-text">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{nom}</h4>
                     <p class="card-text">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">{nom}</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Tel :  {tel}</li>
-                                <li class="list-group-item">Email :  {email}</li>
-                            </ul>
-                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Tel :  {tel}</li>
+                            <li class="list-group-item">Email :  {email}</li>
+                        </ul>
                     </p>
                 </div>
+                
             </div>
+        </div>
         )
     }
 }
@@ -36,8 +35,6 @@ Contact.defaultProps = {
 
 // les types des propriétés
 Contact.propTypes = {
-    nom: PropTypes.string.isRequired,
-    tel: PropTypes.string,
-    email: PropTypes.string
+    data: PropTypes.object.isRequired
 };
 export default Contact;
