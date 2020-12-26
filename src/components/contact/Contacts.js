@@ -13,12 +13,23 @@ class Contacts extends Component {
             {id: 5, nom: "Houda HM", tel: "123456789", email:"houda.hm@email"}
         ]
     }
+
+    // supprimer un contact
+    deleteContactParent = (id) => {
+        console.log("deleteContactParent", id);
+        const {contacts} = this.state;
+        const liste_ = contacts.filter((contact) => contact.id !== id);
+        this.setState({
+            contacts: liste_,
+        })
+
+    }
     render() {
         const {contacts} = this.state;
         return (
             <div>
                 {contacts.map((contact) => (
-                    <Contact data={contact} />
+                    <Contact data={contact} onDeleteContactChild={this.deleteContactParent.bind(this, contact.id)}/>
                 ))
                 }
             </div>

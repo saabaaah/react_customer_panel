@@ -15,6 +15,13 @@ class Contact extends Component {
         })
         
     }
+
+    onDeleteContact(params) {
+        console.log("onDeleteContact",params);
+        this.props.onDeleteContactChild();
+        
+    }    
+    
     render() {
         const {nom, tel, email} = this.props.data;
         return (
@@ -23,7 +30,10 @@ class Contact extends Component {
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        {nom} <i onClick={this.showContact.bind(this, nom)} class="fa fa-sort-desc" aria-hidden="true"></i>
+                        {nom} 
+                        <i onClick={this.showContact.bind(this, nom)}  style={{curssor: 'pointer'}} class="fa fa-sort-desc"></i>
+                        <i onClick={this.onDeleteContact.bind(this) } style={{color:'red', float:'right', curssor: 'pointer'}} class="fa fa-times"></i>
+
                     </h4>
                     <p class="card-text">
                         {(this.state.showContentToggle)? (
