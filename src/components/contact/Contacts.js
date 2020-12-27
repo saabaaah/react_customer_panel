@@ -17,14 +17,16 @@ class Contacts extends Component {
     render() {
         return (
             <Consumer>
-                {value =>(
-                    <div>
-                        {value.contacts.map((contact) => (
-                            <Contact data={contact} onDeleteContactChild={this.deleteContactParent.bind(this, contact.id)}/>
-                        ))
-                        }
-                    </div>
-                )}
+                {dq =>
+                        (
+                        <div>
+                            {dq.contacts.map((contact) => (
+                                <Contact data={contact} onDeleteContactChild={this.deleteContactParent.bind(this, contact.id)}/>
+                            ))
+                            }
+                        </div>
+                    )
+                }
             </Consumer>
         )
     }
