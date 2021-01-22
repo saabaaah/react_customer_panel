@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Consumer} from '../context';
 import TextInputGroup from '../helpers/TextInputGroup';
 
+// importer axios
+import axios from 'axios';
+
 class AddContact extends Component {
     state = {
         nom:"",
@@ -37,16 +40,32 @@ class AddContact extends Component {
             return;
         }
 
-        // lancer l'action de l'ajout
-        dispatch({
-            type: "ADD_CONTACT",
-            payload:{
-                id: taille+1,
-                nom: this.state.nom,
-                email: this.state.email,
-                tel: this.state.tel
-            }
-        });
+        // créer un contact
+        let newContact = {
+            id: taille+1,
+            name: this.state.nom,
+            email: this.state.email,
+            phone: this.state.tel
+        };
+
+        // ajouter le contact au serveur
+        let url = "https://jsonplaceholder.typicode.com/users";
+        axios.post(url, newContact)
+             .then(res =>{
+                 // lancer l'action de l'ajout
+                 console.log("Resultat d'ajout :", res);
+                 // remplacer les clés name et phone par nom et tel !
+                 Object.defineProperty(res.data, "nom", Object.getOwnPropertyDescriptor(res.data, "name"));
+                    delete res.data["name"];
+                    Object.defineProperty(res.data, "tel", Object.getOwnPropertyDescriptor(res.data, "phone"));
+                    delete res.data["phone"];
+                dispatch({
+                    type: "ADD_CONTACT",
+                    payload:res.data
+                    });
+             })
+             .catch(err => console.log("Erreur :", err))
+
         // vider le formulaire si aucune erreur
         this.setState({
                 nom:'',
