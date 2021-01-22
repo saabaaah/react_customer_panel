@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {Consumer} from '../context';
+import TextInputGroup from '../Helpers/TextInputGroup';
 
 class AddContact extends Component {
     state = {
         nom:"",
         email:"",
-        tel:""
+        tel:"",
+        errors: {}
     };
 
     // fonction onchange du changeent des inputs
@@ -20,6 +22,21 @@ class AddContact extends Component {
         e.preventDefault();
         console.log(this.state);
 
+        // tester les champs 
+        const {nom, email, tel, errors} = this.state;
+        if(nom == ''){
+            this.setState({errors: {nom: "Erreur le nom est vide!"}})
+            return;
+        }
+        if(email == ''){
+            this.setState({errors: {email: "Erreur l'email est vide!"}})
+            return;
+        }
+        if(tel == ''){
+            this.setState({errors: {tel: "Erreur le numéro de téléphone est vide!"}})
+            return;
+        }
+
         // lancer l'action de l'ajout
         dispatch({
             type: "ADD_CONTACT",
@@ -29,18 +46,24 @@ class AddContact extends Component {
                 email: this.state.email,
                 tel: this.state.tel
             }
-        })
-
-        this.state = {
-            nom:"",
-            email:"",
-            tel:""
-        }
+        });
+        // vider le formulaire si aucune erreur
+        this.setState({
+                nom:'',
+                email:'',
+                tel:'',
+                errors: {}
+            }, () => {
+                console.log("Appel après setState ....")
+                this.setState({nom:''})
+            }
+        );
+        
 
     }
 
     render() {
-        const {nom, email, tel} = this.state;
+        const {nom, email, tel, errors} = this.state;
         return (
             <Consumer>
                 {value =>{ 
@@ -51,24 +74,18 @@ class AddContact extends Component {
                             <div className="card">
                                 <div className="card-body">
                                     <h4 className="card-title">Ajouter Contact</h4>
-                                    <div className="form-group">
-                                    <label for="">Nom</label>
-                                    <input type="text" name="nom" id="nom"   defaultValue={nom}
-                                            onChange={this.onChangeInput}
-                                            className="form-control" placeholder="" aria-describedby="helpId"/>
-                                    </div>
-                                    <div className="form-group">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email" id="email" defaultValue={email}
-                                            onChange={this.onChangeInput}
-                                            className="form-control" placeholder="" aria-describedby="helpId"/>
-                                    </div>
-                                    <div className="form-group">
-                                    <label for="">Tel</label>
-                                    <input type="text" name="tel" id="tel" defaultValue={tel}
-                                            onChange={this.onChangeInput}
-                                            className="form-control" placeholder="" aria-describedby="helpId"/>
-                                    </div>
+                                    <TextInputGroup label="Nom" name="nom" type="text" 
+                                                    onChange={this.onChangeInput}
+                                                    error={errors.nom}
+                                                    defaultValue={this.state.nom}/>
+                                    <TextInputGroup label="Email" name="email" type="text" 
+                                                    onChange={this.onChangeInput} 
+                                                    error={errors.email}
+                                                    defaultValue={this.state.email}/>
+                                    <TextInputGroup label="Tel" name="tel" type="text" 
+                                                    onChange={this.onChangeInput} 
+                                                    error={errors.tel}
+                                                    defaultValue={this.state.tel}/>
                                 </div>
                                 <div><button type="submit">Valider </button></div>
                             </div>
