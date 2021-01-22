@@ -42,14 +42,14 @@ class Contact extends Component {
                                     <i onClick={this.onDeleteContact.bind(this, id, dispatch) } style={{color:'red', float:'right', curssor: 'pointer'}} className="fa fa-times"></i>
             
                                 </h4>
-                                <p className="card-text">
+                                <div className="card-text">
                                     {(this.state.showContentToggle)? (
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item">Tel :  {tel}</li>
                                         <li className="list-group-item">Email :  {email}</li>
                                     </ul>
                                     ) : null}
-                                </p>
+                                </div>
                             </div>
                             
                         </div>

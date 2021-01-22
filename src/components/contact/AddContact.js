@@ -58,7 +58,9 @@ class AddContact extends Component {
                 this.setState({nom:''})
             }
         );
-        
+
+        // rediriger vers la liste des contacts 
+        this.props.history.push('/');
 
     }
 
