@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './navbar.css';
 import classnames from 'classnames';
 import {Link} from 'react-router-dom';
+
 // importer bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 
