@@ -3,11 +3,14 @@ import React from 'react'
 // importer style
 import './style.css'
 
-export default function About() {
+export default function About(props) {
     return (
         <div>
             <h1>A propos!</h1>
-            <p>Voici cette page!</p>
+            <p>
+                {props.match.params.nom} <br/>
+                Voici cette page!
+            </p>
         </div>
     )
 }

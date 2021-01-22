@@ -31,7 +31,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Contacts}/>
             <Route exact path="/contact/add" component={AddContact}/>
-            <Route exact path="/about" component={About}/>
+            <Route exact path="/about/" component={About}/>
+            <Route exact path="/about/:nom" component={About}/>
             <Route component={Page404}/>
           </Switch>
         </Router>
