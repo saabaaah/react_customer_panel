@@ -17,9 +17,9 @@ class Contact extends Component {
         
     }
 
-    onDeleteContact(id, aze) {
-        console.log("onDeleteContact",id, aze);
-        aze({
+    onDeleteContact(id, dispatch) {
+        console.log("onDeleteContact",id, dispatch);
+        dispatch({
             type:'DELETE_CONTACT',
             payload:id
         })
@@ -31,22 +31,22 @@ class Contact extends Component {
         return (
             <Consumer>
                 {value =>{
-                    const {aze} = value;
+                    const {dispatch} = value;
                     return (
-                        <div class="card-text">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">
+                        <div className="card-text">
+                        <div className="card">
+                            <div className="card-body">
+                                <h4 className="card-title">
                                     {nom} 
-                                    <i onClick={this.showContact.bind(this, nom)}  style={{curssor: 'pointer'}} class="fa fa-sort-desc"></i>
-                                    <i onClick={this.onDeleteContact.bind(this, id, aze) } style={{color:'red', float:'right', curssor: 'pointer'}} class="fa fa-times"></i>
+                                    <i onClick={this.showContact.bind(this, nom)}  style={{curssor: 'pointer'}} className="fa fa-sort-desc"></i>
+                                    <i onClick={this.onDeleteContact.bind(this, id, dispatch) } style={{color:'red', float:'right', curssor: 'pointer'}} className="fa fa-times"></i>
             
                                 </h4>
-                                <p class="card-text">
+                                <p className="card-text">
                                     {(this.state.showContentToggle)? (
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Tel :  {tel}</li>
-                                        <li class="list-group-item">Email :  {email}</li>
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item">Tel :  {tel}</li>
+                                        <li className="list-group-item">Email :  {email}</li>
                                     </ul>
                                     ) : null}
                                 </p>

@@ -11,6 +11,11 @@ const reducer = (state, action) => {
                 contacts: state.contacts.filter( (contact) =>contact.id !== action.payload)
             }
         
+        case 'ADD_CONTACT':
+            return {
+                contacts: [...state.contacts, action.payload]
+            }
+            
         default :
             return state;
     }
@@ -26,7 +31,7 @@ export class Provider extends Component {
             {id: 4, nom: "Sarah HM", tel: "123456789", email:"sarah.hm@email"},
             {id: 5, nom: "Houda HM", tel: "123456789", email:"houda.hm@email"}
         ],
-        aze: action => this.setState(state => reducer(state, action))
+        dispatch: action => this.setState(state => reducer(state, action))
     }
     
     render() {

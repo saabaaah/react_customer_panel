@@ -7,12 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const Navbar = (props) => {
     const {titre} = props;
     return (
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">{titre}</a>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+            <a className="navbar-brand" href="#">{titre}</a>
+            <div className="collapse navbar-collapse" id="collapsibleNavId">
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li className="nav-item active">
+                        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                     </li>
 
                 </ul>
