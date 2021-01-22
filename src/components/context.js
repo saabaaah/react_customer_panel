@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+// importer la librairie axios pour recevoir les requeste https 
+import axios from 'axios';
+
 // definir le context
 const Context = React.createContext();
 
@@ -33,7 +36,33 @@ export class Provider extends Component {
         ],
         dispatch: action => this.setState(state => reducer(state, action))
     }
-    
+
+    // fonction de fin de chargement des components 
+    componentDidMount(){
+        console.log("context.js : componentDidMount !");
+        let url = "https://jsonplaceholder.typicode.com/users";
+        // lancer une requete de recupération
+        axios.get(url)
+             .then(res =>{
+                 console.log("res : ", res.data);
+                 // convertit nae à nom et phone à tel :
+                 for(let i = 0; i < res.data.length ; i++){
+                    Object.defineProperty(res.data[i], "nom", Object.getOwnPropertyDescriptor(res.data[i], "name"));
+                    delete res.data[i]["name"];
+                    Object.defineProperty(res.data[i], "tel", Object.getOwnPropertyDescriptor(res.data[i], "phone"));
+                    delete res.data[i]["phone"];
+                 }
+                 console.log("adapter res : ", res.data);
+                 this.setState({
+                    contacts: res.data
+                 });
+             }).catch(err => {
+                 console.log("Erreur : ", err)
+             })
+
+    }
+
+    // rendu de la vue!
     render() {
         return (
             <Context.Provider value={this.state}>
