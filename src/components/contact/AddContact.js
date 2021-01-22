@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Consumer} from '../context';
-import TextInputGroup from '../Helpers/TextInputGroup';
+import TextInputGroup from '../helpers/TextInputGroup';
 
 class AddContact extends Component {
     state = {
