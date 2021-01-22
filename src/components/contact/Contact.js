@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './contact.css';
 import { Consumer } from '../context';
+
+// importer axios 
+import axios from 'axios';
+
+// importer style 
+import './contact.css';
 
 class Contact extends Component {
 
@@ -14,16 +19,21 @@ class Contact extends Component {
         this.setState({
             showContentToggle: ! this.state.showContentToggle
         })
-        
     }
 
     onDeleteContact(id, dispatch) {
         console.log("onDeleteContact",id, dispatch);
-        dispatch({
-            type:'DELETE_CONTACT',
-            payload:id
-        })
-        
+        // supprimer le contact de l'API
+        let url = "https://jsonplaceholder.typicode.com/users";
+        axios.delete(url+"/"+id)
+             .then(res => {
+                console.log("Reponse suppression : ", res);
+                dispatch({
+                    type:'DELETE_CONTACT',
+                    payload:id
+                })
+             })
+             .catch(err => {console.log("Erreur : ", err)});
     }    
     
     render() {
