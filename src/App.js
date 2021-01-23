@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import Navbar from './components/navbar/Navbar';
 import Contacts from './components/contact/Contacts';
 import AddContact from'./components/contact/AddContact';
+import EditContact from'./components/contact/EditContact';
 import About from'./components/pages/About';
 import Page404 from'./components/pages/Page404';
 
@@ -31,6 +32,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Contacts}/>
             <Route exact path="/contact/add" component={AddContact}/>
+            <Route exact path="/contact/edit/:id" component={EditContact}/>
             <Route exact path="/about/" component={About}/>
             <Route exact path="/about/:nom" component={About}/>
             <Route component={Page404}/>

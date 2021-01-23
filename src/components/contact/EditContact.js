@@ -5,7 +5,7 @@ import TextInputGroup from '../helpers/TextInputGroup';
 // importer axios
 import axios from 'axios';
 
-class AddContact extends Component {
+class EditContact extends Component {
     state = {
         nom:"",
         email:"",
@@ -20,10 +20,13 @@ class AddContact extends Component {
         console.log(this.state);
     }
 
-    submit = (dispatch, taille, e) => {
+    submit = (dispatch, e) => {
         // ne oas refraichir la page!
         e.preventDefault();
         console.log(this.state);
+
+        // récupérer l'id
+        const id = this.props.match.params.id;
 
         // tester les champs 
         const {nom, email, tel, errors} = this.state;
@@ -41,26 +44,30 @@ class AddContact extends Component {
         }
 
         // créer un contact
-        let newContact = {
-            id: taille+1,
+        let updatedContact = {
+            id: id,
             name: this.state.nom,
             email: this.state.email,
             phone: this.state.tel
         };
 
-        // ajouter le contact au serveur
+        console.log("id :", id);
+        console.log("state :", this.state);
+        console.log("props :", this.props.match.params);
+
+        // modifier le contact au serveur
         let url = "https://jsonplaceholder.typicode.com/users";
-        axios.post(url, newContact)
+        axios.put(url+"/"+id, updatedContact)
              .then(res =>{
                  // lancer l'action de l'ajout
-                 console.log("Resultat d'ajout :", res);
+                 console.log("Resultat de mise à jour :", res);
                  // remplacer les clés name et phone par nom et tel !
                  Object.defineProperty(res.data, "nom", Object.getOwnPropertyDescriptor(res.data, "name"));
                     delete res.data["name"];
                     Object.defineProperty(res.data, "tel", Object.getOwnPropertyDescriptor(res.data, "phone"));
                     delete res.data["phone"];
                 dispatch({
-                    type: "ADD_CONTACT",
+                    type: "EDIT_CONTACT",
                     payload:res.data
                     });
              })
@@ -84,6 +91,25 @@ class AddContact extends Component {
 
     }
 
+    // chargement des données du contact à modifier
+    componentDidMount(){
+        const id = this.props.match.params.id;
+        let url = "https://jsonplaceholder.typicode.com/users";
+        axios.get(url+"/"+id)
+             .then(res => {
+                this.setState({
+                    nom: res.data.name,
+                    tel: res.data.phone,
+                    email: res.data.email,
+                    id: res.data.email,
+                    errors: {}
+                });
+             })
+             .catch(err => {
+                 console.log("Erreur : ", err);
+             })
+    }
+
     render() {
         const {nom, email, tel, errors} = this.state;
         return (
@@ -92,10 +118,10 @@ class AddContact extends Component {
                     const {dispatch} = value;
                     return (
                     <div>
-                        <form onSubmit={this.submit.bind(this, dispatch, value.contacts.length)}>
+                        <form onSubmit={this.submit.bind(this, dispatch)}>
                             <div className="card">
                                 <div className="card-body">
-                                    <h4 className="card-title">Ajouter Contact</h4>
+                                    <h4 className="card-title">Modifier Contact</h4>
                                     <TextInputGroup label="Nom" name="nom" type="text" 
                                                     onChange={this.onChangeInput}
                                                     error={errors.nom}
@@ -109,7 +135,7 @@ class AddContact extends Component {
                                                     error={errors.tel}
                                                     defaultValue={this.state.tel}/>
                                 </div>
-                                <div><button className="btn btn-danger btn-block"  type="submit">Valider </button></div>
+                                <div><button className="btn btn-danger btn-block" type="submit">Valider </button></div>
                             </div>
                         </form>
                     </div>
@@ -119,4 +145,4 @@ class AddContact extends Component {
     }
 }
 
-export default AddContact;
+export default EditContact;

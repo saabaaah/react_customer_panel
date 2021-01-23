@@ -18,7 +18,12 @@ const reducer = (state, action) => {
             return {
                 contacts: [...state.contacts, action.payload]
             }
-            
+        
+        case 'EDIT_CONTACT':
+            return {
+                contacts: state.contacts.map( contact => contact.id === action.payload.id ? contact = action.payload : contact)
+            }
+        
         default :
             return state;
     }

@@ -5,6 +5,9 @@ import { Consumer } from '../context';
 // importer axios 
 import axios from 'axios';
 
+// im^porter le lien 
+import {Link} from 'react-router-dom';
+
 // importer style 
 import './contact.css';
 
@@ -49,6 +52,10 @@ class Contact extends Component {
                                 <h4 className="card-title">
                                     {nom} 
                                     <i onClick={this.showContact.bind(this, nom)}  style={{curssor: 'pointer'}} className="fa fa-sort-desc"></i>
+                                    <Link to={`/contact/edit/${id}`}>
+                                        <i style={{color:'blue', float:'right', curssor: 'pointer', marginLeft:'8px'}} 
+                                            className="fa fa-pencil"></i>
+                                    </Link>
                                     <i onClick={this.onDeleteContact.bind(this, id, dispatch) } style={{color:'red', float:'right', curssor: 'pointer'}} className="fa fa-times"></i>
             
                                 </h4>
